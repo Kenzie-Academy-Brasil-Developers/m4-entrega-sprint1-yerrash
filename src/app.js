@@ -1,28 +1,14 @@
 import express from "express";
-import createUserController from "./controllers/createUser.controller";
-import listUsersController from "./controllers/listUsers.controller";
-import patchUserController from "./controllers/patchUser.controller";
+import userRouter from "./routes/users.routes";
 
 const app = express();
+
 app.use(express.json());
-const port = 3000;
 
-app.post("/users", createUserController);
+app.use("/users", userRouter);
 
-app.get("/users", listUsersController);
-
-app.patch("/users/:id", patchUserController);
-
-app.get("/", (req, res) => {
+app.get("/", (_, res) => {
   res.send("Rendering!");
 });
 
-app.listen(port);
-
-/* 
-Endpoints
-    POST /login = gera um token recebendo email e password
-    GET /users/profile = retorna os dados do usuário logado
-    PATCH /users/:id = atualiza os dados de um usuário
-    DELETE /users/:id = deleta usuários do banco
-*/
+app.listen(3000);

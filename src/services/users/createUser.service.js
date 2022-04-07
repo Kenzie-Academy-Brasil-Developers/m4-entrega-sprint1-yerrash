@@ -1,4 +1,4 @@
-import users from "../database";
+import { users } from "../../database";
 import { v4 as uuidv4 } from "uuid";
 
 const createUserService = (email, name, password, isAdm) => {
