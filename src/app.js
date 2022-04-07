@@ -1,14 +1,23 @@
 import express from "express";
+import { response } from "express";
+import createUserService from "./services/createUser.service";
+
 const app = express();
 const port = 3000;
+
+app.post("/users", (req, res) => {
+  const { email, name, password, isAdm } = request.body;
+
+  const user = createUserService(email, name, password, isAdm);
+
+  return response.json(user);
+});
 
 app.get("/", (req, res) => {
   res.send("Rendering!");
 });
 
-app.listen(port, () => {
-  console.log(`Running on port ${port}`);
-});
+app.listen(port);
 
 /* 
 Endpoints
