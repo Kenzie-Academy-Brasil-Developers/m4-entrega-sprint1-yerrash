@@ -7,15 +7,14 @@ const createUserService = (email, name, password, isAdm) => {
   if (existingUser) {
     return "Email address already registered;";
   }
-  // JWT
 
   const newUser = {
     email,
     name,
     password,
     isAdm,
-    createdOn,
-    updatedOn,
+    // createdOn,
+    // updatedOn,
     id: uuidv4(),
   };
 

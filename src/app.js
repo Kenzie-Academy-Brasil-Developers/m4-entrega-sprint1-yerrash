@@ -1,17 +1,17 @@
 import express from "express";
-import { response } from "express";
-import createUserService from "./services/createUser.service";
+import createUserController from "./controllers/createUser.controller";
+import listUsersController from "./controllers/listUsers.controller";
+import patchUserController from "./controllers/patchUser.controller";
 
 const app = express();
+app.use(express.json());
 const port = 3000;
 
-app.post("/users", (req, res) => {
-  const { email, name, password, isAdm } = request.body;
+app.post("/users", createUserController);
 
-  const user = createUserService(email, name, password, isAdm);
+app.get("/users", listUsersController);
 
-  return response.json(user);
-});
+app.patch("/users/:id", patchUserController);
 
 app.get("/", (req, res) => {
   res.send("Rendering!");
@@ -21,9 +21,7 @@ app.listen(port);
 
 /* 
 Endpoints
-    POST /users = criação de usuário
     POST /login = gera um token recebendo email e password
-    GET /users = lista todos os usuários
     GET /users/profile = retorna os dados do usuário logado
     PATCH /users/:id = atualiza os dados de um usuário
     DELETE /users/:id = deleta usuários do banco
