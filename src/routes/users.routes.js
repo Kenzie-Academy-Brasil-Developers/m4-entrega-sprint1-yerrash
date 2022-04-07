@@ -8,8 +8,8 @@ const userController = new UserController();
 
 userRouter.post("", emailVerifierMiddleware, userController.creator);
 userRouter.post("/login", userController.loger);
-userRouter.get("", userController.lister);
-userRouter.get("/profile", userController.profiler);
+userRouter.get("", authMiddleware, userController.lister);
+userRouter.get("/profile", authMiddleware, userController.profiler);
 userRouter.patch("/:id", authMiddleware, userController.patcher);
 userRouter.delete("/:id", authMiddleware, userController.delete);
 
