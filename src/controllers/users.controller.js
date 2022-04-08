@@ -2,6 +2,7 @@ import createUserService from "../services/users/createUser.service";
 import deleteUserService from "../services/users/deleteUser.service";
 import listUsersService from "../services/users/listUsers.service";
 import patchUserService from "../services/users/patchUser.service";
+import userProfileService from "../services/users/userProfile.service";
 
 export default class UserController {
   async creator(req, res) {
@@ -19,7 +20,11 @@ export default class UserController {
   }
 
   profiler(req, res) {
-    return res;
+    const userToken = req;
+
+    const user = userProfileService(userToken);
+
+    return res.json(user);
   }
 
   patcher(req, res) {
