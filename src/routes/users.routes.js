@@ -7,7 +7,6 @@ const userRouter = Router();
 const userController = new UserController();
 
 userRouter.post("", emailVerifierMiddleware, userController.creator);
-userRouter.post("/login", userController.loger);
 userRouter.get("", authMiddleware, userController.lister);
 userRouter.get("/profile", authMiddleware, userController.profiler);
 userRouter.patch("/:id", authMiddleware, userController.patcher);

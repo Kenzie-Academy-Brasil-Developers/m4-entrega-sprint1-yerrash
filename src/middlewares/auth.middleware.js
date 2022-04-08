@@ -4,7 +4,9 @@ const authMiddleware = (req, res, next) => {
   let token = req.headers.authorization;
 
   if (!token) {
-    return res.status(401).json({ status: "error", message: "Missing token" });
+    return res
+      .status(401)
+      .json({ status: "error", message: "Missing authorization headers" });
   }
 
   token = token.split(" ")[1];

@@ -2,10 +2,10 @@ import { users } from "../../database";
 
 const patchUserService = (id, email, name, password) => {
   const patchedUser = {
-    id,
     email,
     name,
     password,
+    updatedOn: new Date(),
   };
 
   const userIndex = users.findIndex((e) => e.id === id);

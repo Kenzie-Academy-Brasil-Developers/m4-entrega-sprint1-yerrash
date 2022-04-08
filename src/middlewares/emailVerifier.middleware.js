@@ -1,4 +1,4 @@
-import users from "../database";
+import { users } from "../database";
 
 const emailVerifierMiddleware = (req, res, next) => {
   const { email } = req.body;
@@ -6,9 +6,9 @@ const emailVerifierMiddleware = (req, res, next) => {
   const user = users.find((user) => user.email === email);
 
   if (user) {
-    return res
-      .status(401)
-      .json({ status: "error", message: "Email address already in use" });
+    return res.status(400).json({
+      message: "E-mail already registered",
+    });
   }
 
   next();

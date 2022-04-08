@@ -1,20 +1,17 @@
 import { users } from "../../database";
 import { v4 as uuidv4 } from "uuid";
+import * as bcrypt from "bcryptjs";
 
-const createUserService = (email, name, password, isAdm) => {
-  const existingUser = users.find((user) => user.email === email);
-
-  if (existingUser) {
-    return "Email address already registered;";
-  }
+const createUserService = async ({ email, name, password, isAdm }) => {
+  const hashedPassword = await bcrypt.hash(password, 8);
 
   const newUser = {
     email,
     name,
-    password,
+    password: hashedPassword,
     isAdm,
-    // createdOn,
-    // updatedOn,
+    createdOn: new Date(),
+    updatedOn: new Date(),
     id: uuidv4(),
   };
 
